@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+
+<!-- Random number verify program, L.N -->
+
+<h3> Check your number </h3>
+
+<h5> A random number is generated depending on the value placed in the code, try to check it </h5>
+
+<input/>
+
+<button> Check attempt </button>
+
+<script>
+
+  function raffle() {
+
+    return Math.round(Math.random() * 10);
+  }
+
+  function raffleNumbers(amount) {
+
+    
+
+      var secret = []; 
+
+      var number = 1;
+
+      while(number <= amount) {
+
+      var numberRandom = raffle();
+
+      var found = false;
+
+      if(numberRandom !== 0) {    
+        for(var pos = 0; pos < secret.length; pos++) {
+
+          if(secret[pos] == numberRandom) {
+            found = true;
+            break;
+
+          }
+        }
+
+        if(found == false) { 
+
+          secret.push(numberRandom);
+          number++;
+          }
+        }
+     }
+
+    return secret;
+
+  }
+
+    // Put quantity in <amount>
+
+    var secret = raffleNumbers(amount);
+   
+   // Optional, show the numbers in web console
+    console.log(secret);
+
+    var input = document.querySelector("input");
+    input.focus();
+
+    function verify() {
+
+       var found = false;
+
+       for(var pos = 0; pos < secret.length; pos++) {
+
+              if(input.value == secret[pos]) {
+
+                     alert("Correct");
+                     found = true;
+                     break;
+              } 
+       }
+
+
+       
+       if(found == false) {
+
+              alert("Wrong");
+       }
+
+       input.value = "";
+       input.focus();
+
+    }
+
+    var button = document.querySelector("button");
+
+    button.onclick = verify;
+
+</script>
+
+<br> 
+<br>
+<h7> by L.N </h7>
